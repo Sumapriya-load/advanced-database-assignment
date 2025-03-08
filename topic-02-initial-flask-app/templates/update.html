@@ -1,17 +1,32 @@
+<!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        This is the update template. 
-        <form action="/update/{{data['id']}}" method="post">
-            <hr/>
-            <p>Animal Name:<input name="name" value="{{data['name']}}"/></p>
-            <p>Age:<input name="age" value="{{data['age']}}"/></p>
-            <p>Type:<input name="type" value="{{data['type']}}"/></p>
-            <p>Owner:<input name="owner" value="{{data['owner']}}"/></p>
-            <hr/>
-            <button type="submit">Update</button>
-            <a href="/list">Cancel</a>
-            <hr/>
-        </form>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Update Pet</title>
+  </head>
+  <body>
+    <h1>Update Pet Record</h1>
+    <form method="POST" action="{{ url_for('post_update', id=data.id) }}">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="{{ data.name }}" required>
+      <br>
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" value="{{ data.age }}" required>
+      <br>
+      <label for="owner">Owner:</label>
+      <input type="text" id="owner" name="owner" value="{{ data.owner }}" required>
+      <br>
+      <label for="kind_id">Kind:</label>
+      <select name="kind_id" id="kind_id">
+        {% for kind in kinds %}
+          <option value="{{ kind.id }}" {% if kind.id == data.kind_id %}selected{% endif %}>
+            {{ kind.kind_name }}
+          </option>
+        {% endfor %}
+      </select>
+      <br>
+      <input type="submit" value="Update">
+    </form>
+    <p><a href="{{ url_for('get_list') }}">Back to Pet List</a></p>
+  </body>
 </html>

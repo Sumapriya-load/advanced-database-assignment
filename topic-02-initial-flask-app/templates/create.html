@@ -1,17 +1,30 @@
+<!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        This is the create template. 
-        <form action="/create" method="post">
-            <hr/>
-            <p>Animal Name:<input name="name"/></p>
-            <p>Age:<input name="age"/></p>
-            <p>Type:<input name="type"/></p>
-            <p>Owner:<input name="owner"/></p>
-            <hr/>
-            <button type="submit">Create</button>
-            <a href="/list">Cancel</a>
-            <hr/>
-        </form>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Create Pet</title>
+  </head>
+  <body>
+    <h1>Create New Pet</h1>
+    <form method="POST" action="{{ url_for('post_create') }}">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <br>
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required>
+      <br>
+      <label for="owner">Owner:</label>
+      <input type="text" id="owner" name="owner" required>
+      <br>
+      <label for="kind_id">Kind:</label>
+      <select name="kind_id" id="kind_id">
+        {% for kind in kinds %}
+          <option value="{{ kind.id }}">{{ kind.kind_name }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <input type="submit" value="Create">
+    </form>
+    <p><a href="{{ url_for('get_list') }}">Back to Pet List</a></p>
+  </body>
 </html>

@@ -1,10 +1,17 @@
-<html>
-    <h1>Hello {{ prof["title"] }} {{ prof["name"] }}!</h1>
-    <table>
-        {% for item in data %}
-        <tr>
-            <td>{{ item["name"] }}</td><td>{{ item["age"] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+  </head>
+  <body>
+    <h1>Hello {{ prof.title }} {{ prof.name }}!</h1>
+    <p>Here are some pet records:</p>
+    <ul>
+      {% for pet in data %}
+         <li>{{ pet.name }}, Age: {{ pet.age }}</li>
+      {% endfor %}
+    </ul>
+    <p><a href="{{ url_for('get_list') }}">View Pet List</a></p>
+  </body>
 </html>

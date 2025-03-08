@@ -1,23 +1,38 @@
+<!DOCTYPE html>
 <html>
-    <h3>List:</h3>
-    <table>
+  <head>
+    <meta charset="UTF-8">
+    <title>Pet List</title>
+  </head>
+  <body>
+    <h1>Pet List</h1>
+    <table border="1">
+      <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Age</th>
-            <th>Owner</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Owner</th>
+          <th>Kind</th>
+          <th>Actions</th>
         </tr>
+      </thead>
+      <tbody>
         {% for row in rows %}
         <tr>
-            {% for item in row %}
-            <td>{{ item }}</td>
-            {% endfor %}
-            <td><a href="/delete/{{row[0]}}">Delete</a></td>
-            <td><a href="/update/{{row[0]}}">Update</a></td>
+          <td>{{ row.id }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.age }}</td>
+          <td>{{ row.owner }}</td>
+          <td>{{ row.kind_name }}</td>
+          <td>
+            <a href="{{ url_for('get_update', id=row.id) }}">Update</a> |
+            <a href="{{ url_for('get_delete', id=row.id) }}">Delete</a>
+          </td>
         </tr>
         {% endfor %}
+      </tbody>
     </table>
-    <hr/>
-    <a href="/create">Create New Pet</a>
+    <p><a href="{{ url_for('get_create') }}">Create a New Pet</a></p>
+  </body>
 </html>
