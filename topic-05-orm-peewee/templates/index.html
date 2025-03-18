@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet List</title>
+</head>
+<body>
+    <h1>All Pets</h1>
+    <a href="{{ url_for('create_pet') }}">Create New Pet</a>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Kind</th>
+            <th>Age</th>
+            <th>Owner</th>
+            <th>Actions</th>
+        </tr>
+        {% for pet in pets %}
+        <tr>
+            <td>{{ pet.id }}</td>
+            <td>{{ pet.name }}</td>
+            <td>{{ pet.kind.name }}</td>
+            <td>{{ pet.age }}</td>
+            <td>{{ pet.owner }}</td>
+            <td>
+                <a href="{{ url_for('view_pet', pet_id=pet.id) }}">View</a> |
+                <a href="{{ url_for('update_pet', pet_id=pet.id) }}">Update</a> |
+                <a href="{{ url_for('delete_pet', pet_id=pet.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

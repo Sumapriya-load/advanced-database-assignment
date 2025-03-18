@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Pet</title>
+</head>
+<body>
+    <h1>View Pet Details</h1>
+    <p><strong>ID:</strong> {{ pet.id }}</p>
+    <p><strong>Name:</strong> {{ pet.name }}</p>
+    <p><strong>Kind:</strong> {{ pet.kind.name }}</p>
+    <p><strong>Age:</strong> {{ pet.age }}</p>
+    <p><strong>Owner:</strong> {{ pet.owner }}</p>
+    <a href="{{ url_for('index') }}">Back to Pet List</a>
+</body>
+</html>

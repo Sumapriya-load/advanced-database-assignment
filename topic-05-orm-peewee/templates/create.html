@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Pet</title>
+</head>
+<body>
+    <h1>Create a New Pet</h1>
+    <form method="POST">
+        <label for="name">Pet Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+        <label for="owner">Owner:</label>
+        <input type="text" id="owner" name="owner" required><br>
+        <label for="kind">Kind:</label>
+        <select name="kind" id="kind" required>
+            {% for kind in kinds %}
+            <option value="{{ kind.id }}">{{ kind.name }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Create Pet</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Pet List</a>
+</body>
+</html>
